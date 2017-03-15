@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Shingle by adamcandy</title>
+    <title>Project Shingle: Generalised self-consistent and automated domain discretisation for multi-scale geophysical models</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -19,109 +19,74 @@
         <h1>
 <a name="shingle" class="anchor" href="#shingle"><span class="octicon octicon-link"></span></a>Shingle</h1>
 
-<p>Generation of boundary representation from arbitrary geophysical fields.</p>
+<p>
+Generalised self-consistent and automated domain discretisation for multi-scale geophysical models.
+</p>
 
-<p>For further information and updates, please contact the author Dr Adam S. Candy at <a href="mailto:adam.candy@imperial.ac.uk">adam.candy@imperial.ac.uk</a>.</p>
+<p>
+LibShingle: a computational research software library providing a high-level abstraction to spatial discretisation, or mesh generation, for domains containing complex, fractal-like boundaries that characterise those in numerical simulations of geophysical dynamics.  This is accompanied by a compact, shareable and necessarily complete description of the domain discretisation.
+</p>
+
+<p>
+Geophysical model domains typically contain irregular, complex fractal-like boundaries and physical processes that act over a wide range of scales. Constructing geographically constrained boundary-conforming spatial discretisations of these domains with flexible use of anisotropic, fully unstructured meshes is a challenge. The problem contains a wide range of scales and a relatively large, heterogeneous constraint parameter space. Approaches are commonly ad hoc, model or application specific and insufficiently described. Development of new spatial domains is frequently time-consuming, hard to repeat, error prone and difficult to ensure consistent due to the significant human input required. As a consequence, it is difficult to reproduce simulations, ensure a provenance in model data handling and initialisation, and a challenge to conduct model intercomparisons rigorously. Moreover, for flexible unstructured meshes, there is additionally a greater potential for inconsistencies in model initialisation and forcing parameters. This library introduces a consistent approach to unstructured mesh generation for geophysical models, that is automated, quick-to-draft and repeat, and provides a rigorous and robust approach that is consistent to the source data throughout. The approach is enabling further new research in complex multi-scale domains, difficult or not possible to achieve with existing methods.
+
+Further details are provided in the library source and <a href="http://homepage.tudelft.nl/w8w0h/4fcf65d8/shingle_manual.pdf">Shingle project manual</a>.
+
+<p>For further information and updates, please contact the lead author Dr Adam S. Candy at <a href="mailto:contact@shingleproject.org">contact@shingleproject.org</a>.</p>
 
 <p class="view">
   View the project on GitHub: 
-  <a href="https://github.com/adamcandy/Shingle">adamcandy/Shingle</a>.</p>
+  <a href="https://github.com/shingleproject/Shingle">shingleproject/Shingle</a>.</p>
   <div class=bar>
       <ul>
-        <li><a href="https://github.com/adamcandy/Shingle/zipball/master">Download <strong>ZIP File</strong></a></li>
-        <li><a href="https://github.com/adamcandy/Shingle/tarball/master">Download <strong>TAR Ball</strong></a></li>
-        <li><a href="https://github.com/adamcandy/Shingle">View On <strong>GitHub</strong></a></li>
+        <li><a href="https://github.com/shingleproject/Shingle/zipball/master">Download <strong>ZIP File</strong></a></li>
+        <li><a href="https://github.com/shingleproject/Shingle/tarball/master">Download <strong>TAR Ball</strong></a></li>
+        <li><a href="https://github.com/shingleproject/Shingle">View On <strong>GitHub</strong></a></li>
       </ul>
 </div>
 
 <h2>
 <a name="build-status" class="anchor" href="#build-status"><span class="octicon octicon-link"></span></a>Build status</h2>
 
-<p><a href="http://travis-ci.org/adamcandy/Shingle"><img src="https://secure.travis-ci.org/adamcandy/Shingle.png" alt="Build Status"></a></p>
+<p><a href="http://travis-ci.org/shingleproject/Shingle"><img src="https://travis-ci.org/shingleproject/Shingle.svg?branch=master" alt="Build Status"></a></p>
 
 
 <div>
 <h2>
 <a name="examples" class="anchor" href="#example"></a>Example geophysical domains</h2>
 <p>
-A selection of geophysical domains where Shingle has been applied to generate the boundary representation.
-This description is then meshed using <a href="http://geuz.org/gmsh">Gmsh</a>.
+A selection of geophysical domains where Shingle has been applied to describe and generate geophysical domain spatial discretisation.
 </p>
 <p><img src="./data/shingleexamples.jpg?raw=true" alt="Shingle" title="Shingle"></p>
 </div>
 
 <h2>
-<a name="outline" class="anchor" href="#outline"><span class="octicon octicon-link"></span></a>Outline</h2>
+<a name="outline" class="anchor" href="#outline"><span class="octicon octicon-link"></span></a>Objectives</h2>
 
-<p>A new meshing approach for realistic domains.</p>
+<ol>
+<li>Introduce a consistent approach to the generation of boundary representation to arbitrary geoid bounds.</li>
+<li>A user-friendly, accessible and extensible framework for model-independent geophysical domain mesh generation.</li>
+<li>An intuitive, hierarchical formal grammar to fully describe and share the full heterogeneous set of constraints for the spatial discretisation of geophysical model domains.</li>
+<li>Natural language basis for describing geophysical domain features.</li>
+<li>Self-consistent, scalable, automated and efficient mesh prototyping.</li>
+<li>Platform for iterative development that is repeatable, reproducible with a provenance history of generation.</li>
+<li>Enabling rigorous unstructured mesh generation in general, for a wide range of geophysical applications, in a process that is automated, quick-to-draft and repeat, rigorous and robust, and consistent to the source data throughout.</li>
+</ol>
 
-<p>This code generates boundary representations with elemernt identifications from arbitrary geophysical fields.  It was originally used  mask to generate a boundary along the coastlines and grounding line* (which is not positioned at a constant depth).  The code is easily applied to boundaries along depth contours and to work with other NetCDF sources.</p>
+<h2>
+<a name="outline" class="anchor" href="#outline"><span class="octicon octicon-link"></span></a>Verification test engine</h2>
 
-<p>The new approach uses contouring routines (as opposed to the GSHHS Gmsh plugin, or a GMT approach).  It would be useful to test this new code on a wide range of regions - particularly to check the contouring routines are behaving satisfactorily.  It works very well in the Antarctic region (including the region inside ice shelf cavities). </p>
+Includes a selection of examples, from a relatively straight-forward high-level GUI-driven interaction accessible to modellers new to mesh generation, to complex low-level development communicating with the LibShingle library.  Python interaction is used within the source, in generating documentation and in example Jupyter notebooks.
 
-<p>The dependencies are all Python modules (e.g. GMT is not required).</p>
+A verification test engine is continuously run in response to source code changes, some of which is tested under <a href="http://travis-ci.org/shingleproject/Shingle">Travis</a>.
 
-<ul>
-<li>which involves a neat trick with modulo arithmetic to keep calculation time down significantly.</li>
-</ul><h2>
-<a name="supported-features" class="anchor" href="#supported-features"><span class="octicon octicon-link"></span></a>Supported features</h2>
-
-<ul>
-<li>Generate boundary representation from raw raster input (e.g. a NetCDF data file),</li>
-<li>Regions defined by arbitrary functions of longitude and latitude (given on the command line),</li>
-<li>Simpler definition of regions by boxes (such as 'longmin:longmax,latmin:longmax'),</li>
-<li>Define included paths by Gmsh ID number (useful to include or exclude  specific islands/land masses),</li>
-<li>Deals with multiple open boundaries,</li>
-<li>Islands and boundaries split by the global boundary are treated,</li>
-<li>Automatically closes boundaries with parallels and meridians (with a prescribed length step),</li>
-<li>Applies different boundary IDs on open and closed boundaries,</li>
-<li>Exclude smaller islands - restricted by a given minimum area,</li>
-<li>Option to extend domain in latitude on open boundaries (e.g. for sponge regions, or large open regions in the open ocean),</li>
-<li>Command line used is saved in the Gmsh .geo file for reference,</li>
-<li>Projection type (e.g. options to generate a mesh to UTM coordinates, </li>
-<li>Option to generate the ACC average track line (and then to refine the mesh to this).</li>
-<li>Ice shelf inclusion options</li>
-</ul><h2>
-<a name="development-version" class="anchor" href="#development-version"><span class="octicon octicon-link"></span></a>Development version</h2>
-
-<p>A development version of the code also has:</p>
-
-<ul>
-<li>Caching of contours (which can save a lot of processing time)</li>
-<li>Graphical output of contouring stage, to aid in contour selection</li>
-</ul><h2>
-<a name="other-updates" class="anchor" href="#other-updates"><span class="octicon octicon-link"></span></a>Other updates</h2>
-
-<ul>
-<li>Consistent use of dx_default,</li>
-<li>The Antarctica main example contour can now be meshed (uses dx=10 in the parallel creation now),</li>
-<li>Renamed the variables associated with the inclusion of the ice shelf ocean cavities to be more intuitive.</li>
-</ul><h2>
-<a name="test-suite" class="anchor" href="#test-suite"><span class="octicon octicon-link"></span></a>Test suite</h2>
-
-<p>Currently there are six tests in the test suite:</p>
-
-<ul>
-<li>amundsen_sea</li>
-<li>antarctica_all</li>
-<li>antarctica_main_landmass</li>
-<li>antarctica_main_landmass_30s</li>
-<li>filchner-ronne</li>
-<li>filchner-ronne_iceshelf</li>
-</ul><h2>
-<a name="datasets" class="anchor" href="#datasets"><span class="octicon octicon-link"></span></a>Datasets</h2>
-
-<p>The above tests use the RTopo dataset, described in detail at: <a href="http://doi.pangaea.de/10.1594/PANGAEA.741917">http://doi.pangaea.de/10.1594/PANGAEA.741917</a>.</p>
-
-<p>Timmermann, R et al. (2010): Antarctic ice sheet topography, cavity geometry, and global bathymetry (RTopo 1.0.5-beta). doi:10.1594/PANGAEA.741917,
-Supplement to: Timmermann, Ralph; Le Brocq, Anne M; Deen, Tara J; Domack, Eugene W; Dutrieux, Pierre; Galton-Fenzi, Ben; Hellmer, Hartmut H; Humbert, Angelika; Jansen, Daniela; Jenkins, Adrian; Lambrecht, Astrid; Makinson, Keith; Niederjasper, Fred; Nitsche, Frank-Oliver; Nøst, Ole Anders; Smedsrud, Lars Henrik; Smith, Walter (2010): A consistent dataset of Antarctic ice sheet topography, cavity geometry, and global bathymetry. Earth System Science Data, 2(2), 261-273, doi:10.5194/essd-2-261-2010</p>
+An earlier version of the library Shingle 1.0 is available at: <a href="https://github.com/shingleproject/Shingle1.0">https://github.com/shingleproject/Shingle1.0</a>,
+with details on the <a href="./index_shingle1.0.html">Shingle1.0 webpage</a>.
 
       </div>
       <div>
-        <p>This project is maintained by <a href="https://github.com/adamcandy">adamcandy</a>.</p>
+        <p>This project is maintained by <a href="https://github.com/adamcandy">Dr Adam S. Candy</a>.</p>
       </div>
-<p><a href="http://githalytics.com/adamcandy/Shingle"><img src="https://cruel-carlota.pagodabox.com/5494cf3263af78dea92487d951d530a8" alt="githalytics.com alpha" title="githalytics.com"></a>
-<a href="https://bitdeli.com/free" title="Bitdeli Badge"><img src="https://d2weczhvl823v0.cloudfront.net/adamcandy/shingle/trend.png" alt="Bitdeli Badge"></a></p>
     </div>
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
